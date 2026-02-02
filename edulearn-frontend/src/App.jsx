@@ -11,19 +11,29 @@ import AdminPage from './pages/AdminPage';
 import TeacherPage from './pages/TeacherPage';
 import StudentPage from './pages/StudentPage';
 
+// Admin Components
+import AdminLoginPage from './components/admin/AdminLoginPage';
+import AdminDashboard from './components/admin/AdminDashboard';
+
 // Styles
 import './styles/global.css';
 
 const AppContent = () => {
   const { loading } = useAuth();
 
-  
+  if (loading) {
+    return <Loading message="Loading..." />;
+  }
 
   return (
     <Routes>
       {/* Public routes */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      
+      {/* Admin routes */}
+      <Route path="/admin/login" element={<AdminLoginPage />} />
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
       {/* Protected routes */}
       <Route
